@@ -4,6 +4,9 @@ import { Todo } from './todo.js'
 import { Project } from './project.js'
 
 const testProject = new Project("Default");
+const listOfProjects = [testProject];
+
+
 
 const todo = new Todo("Test name", "test description lorem ipsum", "April 11", "High priority");
 
