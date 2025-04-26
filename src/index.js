@@ -21,7 +21,10 @@ testProject.addTodo(todo2);
 projectcontroller.createProject("test project");
 projectcontroller.displayProjects();
 
-
+const search = projectcontroller.searchProject("test project");
+// console.log(search);
+search.addTodo(todo);
+projectcontroller.displayProjects();
 
 // console.log(testProject);
 

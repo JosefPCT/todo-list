@@ -18,4 +18,9 @@ export class ProjectController{
     displayProjects(){
         console.log(this.#projects);
     }
+
+    // Returns an element if found, returns undefined if not found
+    searchProject(projectName){
+        return this.#projects.find((item) => item.name === projectName);
+    }
 }
