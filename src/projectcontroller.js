@@ -20,11 +20,7 @@ export class ProjectController{
     // Console logs the todo list of a specific project
     static displayTodosOf(projName){
         console.log(`Displaying todos of ${projName}`);
-        const todoList = this.getProject(projName).todoLists;
-        todoList.forEach(todo => {
-            console.log(`Title: ${todo.title}`);
-            console.log(`Due date: ${todo.dueDate}`);
-            console.log(`Priority: ${todo.priority}`);
-        });
+        const proj = this.getProject(projName);
+        proj.showTodos();
     }
 }
