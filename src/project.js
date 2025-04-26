@@ -21,6 +21,10 @@ export class Project{
         });
     }
 
+    getProjectName(){
+        return this.name;
+    }
+
     getTodo(title){
         const result = this.todoLists.find((item) => item.title === title);
         if(!result){
