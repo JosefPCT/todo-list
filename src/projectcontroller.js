@@ -24,6 +24,7 @@ export class ProjectController{
         todoList.forEach(todo => {
             console.log(`Title: ${todo.title}`);
             console.log(`Due date: ${todo.dueDate}`);
+            console.log(`Priority: ${todo.priority}`);
         });
     }
 }
