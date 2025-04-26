@@ -40,4 +40,4 @@ testy.todoLists[0].setPriority("low");
 console.log(testy.todoLists[0]);
 
 console.log(ProjectController.displayProjects());
-ProjectController.displayTodos("testing");
+ProjectController.displayTodosOf("testing");

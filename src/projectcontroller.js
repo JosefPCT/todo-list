@@ -17,7 +17,8 @@ export class ProjectController{
         return this.#projects.find((item) => item.name === projectName);
     }
 
-    static displayTodos(projName){
+    // Console logs the todo list of a specific project
+    static displayTodosOf(projName){
         console.log(`Displaying todos of ${projName}`);
         const todoList = this.getProject(projName).todoLists;
         todoList.forEach(todo => {
