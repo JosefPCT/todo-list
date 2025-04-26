@@ -83,3 +83,7 @@ console.log(newProj);
 const newTodo = new Todo("Testing 3");
 newProj.addTodo(newTodo);
 ProjectController.displayProjects();
+
+// testing get project name and get to do list methods
+console.log(newProj.getProjectName());
+console.log(newProj.getTodoList());

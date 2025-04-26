@@ -25,6 +25,10 @@ export class Project{
         return this.name;
     }
 
+    getTodoList(){
+        return this.todoLists;
+    }
+
     getTodo(title){
         const result = this.todoLists.find((item) => item.title === title);
         if(!result){
