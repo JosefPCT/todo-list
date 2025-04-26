@@ -18,6 +18,10 @@ const todo2 = new Todo("Test name2", "test description lorem ipsum2", "April 112
 
 testProject.addTodo(todo2);
 
+projectcontroller.createProject("test project");
+projectcontroller.displayProjects();
+
+
 
 // console.log(testProject);
 
