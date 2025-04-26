@@ -26,6 +26,7 @@ class MainController{
 
 const mc = new MainController;
 mc.createProject("testing");
+
 mc.createTodo("Test name", "test description lorem ipsum", "April 11", "High priority");
 mc.createTodo("Aall", "test description lorem ipsum", "April 11", "High priority","test note","test checklist","testing");
 
@@ -35,3 +36,8 @@ console.log(testy);
 console.log(testy.todoLists[0].isCompleted);
 testy.todoLists[0].toggleCompleteStatus();
 console.log(testy.todoLists[0].isCompleted);
+testy.todoLists[0].setPriority("low");
+console.log(testy.todoLists[0]);
+
+console.log(ProjectController.displayProjects());
+ProjectController.displayTodos("testing");

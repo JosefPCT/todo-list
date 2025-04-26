@@ -14,6 +14,10 @@ export class Todo{
         console.log(`Also has notes of ${this.notes} and a checklist of ${this.checklist}`);
     }
 
+    setPriority(priority){
+        this.priority = priority;
+    }
+
     toggleCompleteStatus(){
         this.isCompleted = !(this.isCompleted);
     }

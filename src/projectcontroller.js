@@ -8,11 +8,21 @@ export class ProjectController{
     }
 
     static displayProjects(){
+        console.log("Displaying projects...");
         console.log(this.#projects);
     }
 
     // Returns an element if found, returns undefined if not found
     static getProject(projectName){
         return this.#projects.find((item) => item.name === projectName);
+    }
+
+    static displayTodos(projName){
+        console.log(`Displaying todos of ${projName}`);
+        const todoList = this.getProject(projName).todoLists;
+        todoList.forEach(todo => {
+            console.log(`Title: ${todo.title}`);
+            console.log(`Due date: ${todo.dueDate}`);
+        });
     }
 }
