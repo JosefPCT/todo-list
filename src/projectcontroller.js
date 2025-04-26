@@ -20,7 +20,7 @@ export class ProjectController{
     }
 
     // Returns an element if found, returns undefined if not found
-    searchProject(projectName){
+    getProject(projectName){
         return this.#projects.find((item) => item.name === projectName);
     }
 }
