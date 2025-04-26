@@ -1,10 +1,14 @@
-class ProjectController{
+export class ProjectController{
     #projects = [];
     constructor(){
         
     }
 
-    addProjectToList(){
+    addProjectToList(project){
+        this.#projects.push(project);
+    }
 
+    displayProjects(){
+        console.log(this.#projects);
     }
 }
