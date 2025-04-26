@@ -1,26 +1,18 @@
-import { Project } from './project.js'
-
 export class ProjectController{
-    #projects = [];
-    constructor(){
-        
+    static #projects = [];
+    constructor(){     
     }
 
-    createProject(name){
-        const project = new Project(name);
-        this.addProjectToList(project);
-    }
-
-    addProjectToList(project){
+    static addProjectToList(project){
         this.#projects.push(project);
     }
 
-    displayProjects(){
+    static displayProjects(){
         console.log(this.#projects);
     }
 
     // Returns an element if found, returns undefined if not found
-    getProject(projectName){
+    static getProject(projectName){
         return this.#projects.find((item) => item.name === projectName);
     }
 }
