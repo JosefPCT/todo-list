@@ -38,10 +38,19 @@ class MainController{
         const proj = new Project(name);
         ProjectController.addProjectToList(proj);
     }
+
+    // Takes in name, description, due date, priority, notes, checklist and optional project paramater
+    createTodo(name,desc,dueDate,prio,notes,checklist,project="Default"){
+        // Looks for the project it will go into
+        const proj = ProjectController.getProject(project);
+        const newTodo = new Todo(name,desc,dueDate,prio,notes,checklist);
+        proj.addTodo(newTodo);
+    }
 }
 
 const mc = new MainController;
-// const testProject = new Project("Default");
-// ProjectController.addProjectToList(testProject);
 mc.createProject("testing");
+mc.createTodo("Test name", "test description lorem ipsum", "April 11", "High priority");
+mc.createTodo("Aall", "test description lorem ipsum", "April 11", "High priority","test note","test checklist","testing");
+
 console.log(ProjectController.displayProjects());
