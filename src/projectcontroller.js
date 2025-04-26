@@ -23,4 +23,14 @@ export class ProjectController{
         const proj = this.getProject(projName);
         proj.showTodos();
     }
+
+    static findTodoOf(projName,title){
+        const proj = ProjectController.getProject(projName);
+        return proj.getTodo(title);
+    }
+
+    static deleteTodoOf(projName, title){
+        const proj = ProjectController.getProject(projName);
+        proj.deleteTodo(title);
+    }
 }

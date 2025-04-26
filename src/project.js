@@ -20,4 +20,30 @@ export class Project{
             console.log(`Priority: ${todo.priority}`);
         });
     }
+
+    getTodo(title){
+        const result = this.todoLists.find((item) => item.title === title);
+        if(!result){
+            console.log(`This todo does not exist`);
+        } else {
+            console.log(`Found ${title}`);
+            console.log(result);
+            return result;
+        }
+    }
+
+    deleteTodo(title){
+        console.log("deleting todo initializitng");
+        const result = this.todoLists.find((todo) => todo.title === title ); 
+        if(!result){
+            console.log(`This todo does not exist`);
+        } else{
+            console.log(`Deleting todo now...`);
+            this.todoLists.forEach((todo,ind) => {
+                if(todo.title === title){
+                    this.todoLists.splice(ind,1);
+                }
+            });
+        } 
+    }
 }

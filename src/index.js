@@ -41,3 +41,27 @@ console.log(testy.todoLists[0]);
 
 console.log(ProjectController.displayProjects());
 ProjectController.displayTodosOf("Default");
+
+// Finding a specific todo and editing it
+console.log(testy);
+console.log(ProjectController.findTodoOf("Default", "Test name"));
+console.log(ProjectController.findTodoOf("testing", "Aall"));
+const edit = ProjectController.findTodoOf("testing", "Aall");
+
+console.log("hmm");
+console.log(edit);
+edit.description = "Hmm";
+console.log(edit);
+
+// Deleting a todo
+console.log("deleting");
+console.log(ProjectController.displayProjects());
+ProjectController.deleteTodoOf("testing", "Aall");
+console.log(ProjectController.displayProjects());
+
+const newProj = ProjectController.getProject("testing");
+console.log(newProj);
+
+const newTodo = new Todo("Testing 3");
+newProj.addTodo(newTodo);
+ProjectController.displayProjects();
