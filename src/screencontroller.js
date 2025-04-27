@@ -21,7 +21,7 @@ export class ScreenController{
     static newProject(e){
         console.log("Clicked addProject Button");
         const newProjectName = prompt("Name of new Project");
-        MainController.createProject(newProjectName);
+        // MainController.createProject(newProjectName);
         // Need to call createProject() from MainController, without importing?
     }
 
