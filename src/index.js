@@ -3,7 +3,23 @@ import { roar } from './test.js'
 import { Todo } from './todo.js'
 import { Project } from './project.js'
 import { ProjectController } from './projectcontroller.js'
+// import { ScreenController } from './screencontroller.js'
 
+class ScreenController{
+    constructor(){
+        cacheDom();
+    }
+
+    cacheDom(){
+        this.container = document.getElementById("main-container");
+        this.addTodoButton = document.getElementById("add-todo");
+        this.addProjectButton = document.getElementById("add-project");
+    }
+
+    static showProjects(projects){
+
+    }
+}
 
 class MainController{
     constructor(){
