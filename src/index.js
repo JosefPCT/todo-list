@@ -3,27 +3,18 @@ import { roar } from './test.js'
 import { Todo } from './todo.js'
 import { Project } from './project.js'
 import { ProjectController } from './projectcontroller.js'
-// import { ScreenController } from './screencontroller.js'
+import { ScreenController } from './screencontroller.js'
 
-class ScreenController{
-    constructor(){
-        cacheDom();
-    }
 
-    cacheDom(){
-        this.container = document.getElementById("main-container");
-        this.addTodoButton = document.getElementById("add-todo");
-        this.addProjectButton = document.getElementById("add-project");
-    }
-
-    static showProjects(projects){
-
-    }
-}
 
 class MainController{
     constructor(){
         ProjectController.addProjectToList(new Project("Default"));
+
+        console.log("testing,...");
+        // ProjectController.cacheDom();
+        ScreenController.cacheDom();
+        console.log(ScreenController.container);
     }
 
     createProject(name){
@@ -57,7 +48,6 @@ class MainController{
         proj.deleteTodo(title);
     }
 }
-
 const mc = new MainController;
 mc.createProject("testing");
 
@@ -103,3 +93,7 @@ ProjectController.displayProjects();
 // testing get project name and get to do list methods
 console.log(newProj.getProjectName());
 console.log(newProj.getTodoList());
+
+// Testing Screen Controller
+
+const sc = new ScreenController;
