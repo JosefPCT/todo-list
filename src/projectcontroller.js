@@ -12,7 +12,7 @@ export class ProjectController{
         return this.#projects.find((item) => item.name === projectName);
     }
 
-    static getListofProjects(){
+    static getListOfProjects(){
         return this.#projects;
     }
 
