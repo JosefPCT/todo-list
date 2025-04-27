@@ -12,7 +12,24 @@ export class ScreenController{
         ScreenController.addProjectButton = document.getElementById("add-project");
     }
 
-    static showProjects(projects){
+    static initEventListeners(){
+        console.log("Initializing event listeners");
+        ScreenController.addProjectButton.addEventListener("click", ScreenController.newProject);
+    }
 
+    // Event handler
+    static newProject(e){
+        console.log("Clicked addProject Button");
+        const newProjectName = prompt("Name of new Project");
+        MainController.createProject(newProjectName);
+        // Need to call createProject() from MainController, without importing?
+    }
+
+    static showProjects(projects){
+        projects.forEach(project => {
+            const h2 = document.createElement("h2");
+            h2.textContent = project.name;
+            ScreenController.container.appendChild(h2);
+        });
     }
 }
