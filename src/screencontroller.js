@@ -34,7 +34,7 @@ export class ScreenController{
         ScreenController.showAllProjects();
     }
 
-    // Event handler for opening the modal
+    // Event handler for opening the modal, saves the id of the project where the button was clicked to
     static openModal(e){
         console.log("Who clicked?");
         console.log(e.target.previousSibling.id);
@@ -45,7 +45,7 @@ export class ScreenController{
         ScreenController.form.reset();
         
     }
-    // Event handler for Adding a New Todo
+    // Event handler for Adding a New Todo, uses FormData to get the form from the modal
     static modalNewTodo(e){
         console.log("Who clicked?");
         console.log(ScreenController.whoClicked);;
