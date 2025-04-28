@@ -17,6 +17,7 @@ export class ScreenController{
     static initEventListeners(){
         console.log("Initializing event listeners");
         ScreenController.addProjectButton.addEventListener("click", ScreenController.newProject);
+        ScreenController.addTodoButton.addEventListener("click", ScreenController.newTodo);
     }
 
     // Event handler
@@ -27,13 +28,30 @@ export class ScreenController{
         ScreenController.showAllProjects();
     }
 
+    static newTodo(e){
+        console.log("Clicked New Todo Button");
+        const newTodo = prompt("Name of new TOdo");
+        LogicController.createTodo(newTodo);
+        ScreenController.showAllProjects();
+    }
+
     static showAllProjects(){
         ScreenController.container.innerHTML = "";
         const projects = LogicController.getListOfProjects();
         projects.forEach(project => {
+            const div = document.createElement("div");
             const h2 = document.createElement("h2");
             h2.textContent = project.name;
-            ScreenController.container.appendChild(h2);
+
+            div.appendChild(h2);
+            console.log(project);
+            project.getTodoList().forEach(todo =>{
+                const para = document.createElement("p");
+                para.textContent = `${todo.title} due date on ${todo.dueDate}`;
+                div.appendChild(para);
+            });
+
+            ScreenController.container.appendChild(div);
         });
     }
 }
