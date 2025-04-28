@@ -7,10 +7,41 @@
 </head>
 <body>
     <h1>Webpack Template</h1>
+    <dialog id="new-todo-dialog">
+        <form action="" method="dialog" id="new-todo-form">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" required>
+
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description">
+
+            <label for="due-date">Due Date</label>
+            <input type="date" name="due-date" id="due-date">
+
+            <fieldset>
+                <legend>Select Priority</legend>
+
+                <div>
+                    <label for="high">High</label>
+                    <input type="radio" name="priority" id="high" value="high" checked>
+
+                    <label for="medium">Medium</label>
+                    <input type="radio" name="priority" id="medium" value="high">
+
+                    <label for="low">Low</label>
+                    <input type="radio" name="priority" id="low" value="high">
+                </div>
+            </fieldset>
+
+            <label for="notes">Notes</label>
+            <textarea name="notes" id="notes"></textarea>
+
+            <button type="submit" id="add-todo-modal-submit">Add todo</button>
+        </form>
+    </dialog>
     <button id="add-todo">Add a new Todo</button>
     <button id="add-project">Add a new Folder</button>
     <div id="main-container">
-
     </div>
 </body>
 </html>

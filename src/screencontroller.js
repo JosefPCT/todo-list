@@ -4,6 +4,7 @@ export class ScreenController{
     static container;
     static addTodoButton;
     static addProjectButton;
+    static modal;
     constructor(){
         // this.cacheDom();
     }
@@ -12,12 +13,16 @@ export class ScreenController{
         ScreenController.container = document.getElementById("main-container");
         ScreenController.addTodoButton = document.getElementById("add-todo");
         ScreenController.addProjectButton = document.getElementById("add-project");
+        ScreenController.modal = document.getElementById("new-todo-dialog");
+        ScreenController.modalSubmitButton = document.getElementById("add-todo-modal-submit");
+        ScreenController.form = document.getElementById("new-todo-form");
     }
 
     static initEventListeners(){
         console.log("Initializing event listeners");
         ScreenController.addProjectButton.addEventListener("click", ScreenController.newProject);
-        ScreenController.addTodoButton.addEventListener("click", ScreenController.newTodo);
+        ScreenController.addTodoButton.addEventListener("click", ScreenController.openModal);
+        ScreenController.modalSubmitButton.addEventListener("click", ScreenController.modalNewTodo);
     }
 
     // Event handler for Adding a Project Button
@@ -28,12 +33,31 @@ export class ScreenController{
         ScreenController.showAllProjects();
     }
 
-    // Event handler for Adding a New Todo Button
-    static newTodo(e){
+    static openModal(){
         console.log("Clicked New Todo Button");
-        const newTodo = prompt("Name of new Todo");
-        LogicController.createTodo(newTodo);
+        console.log(ScreenController.modal);
+        ScreenController.modal.showModal();
+        ScreenController.form.reset();
+        
+    }
+    // Event handler for Adding a New Todo Button
+    static modalNewTodo(e){
+        console.log("Submitted New Todo");
+        const form = ScreenController.form;
+        
+        const formData = new FormData(form);
+        console.log(formData);
+        // for(let [name, value] of formData){
+        //     console.log(`${name} = ${value}`);
+        // };
+        const title = formData.get("title");
+        const desc = formData.get("description");
+        const due = formData.get("due-date");
+        const prio = formData.get("priority");
+        const notes = formData.get("notes");
+        LogicController.createTodo(title,desc,due,prio,notes);
         ScreenController.showAllProjects();
+
     }
 
     // Clears the container first, then displays the project name and their todo's title and due date
