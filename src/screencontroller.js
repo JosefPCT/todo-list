@@ -58,6 +58,13 @@ export class ScreenController{
     }
 }
 
-ScreenController.cacheDom();
-ScreenController.initEventListeners();
-LogicController.displayProjects();
+window.onload = function(){
+    ScreenController.cacheDom();
+    ScreenController.initEventListeners();
+
+    LogicController.createProject("Default");
+    LogicController.displayProjects();
+
+    ScreenController.showAllProjects();
+}
+
