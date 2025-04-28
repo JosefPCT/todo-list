@@ -1,3 +1,5 @@
+import { Project } from './project.js'
+
 export class ProjectController{
     static #projects = [];
     constructor(){     
@@ -5,6 +7,11 @@ export class ProjectController{
 
     static addProjectToList(project){
         this.#projects.push(project);
+    }
+
+    static createProject(name){
+        const proj = new Project(name);
+        ProjectController.addProjectToList(proj);
     }
 
     // Returns an element if found, returns undefined if not found

@@ -22,10 +22,7 @@ class MainController{
         ScreenController.showProjects(ProjectController.getListOfProjects());
     }
 
-    createProject(name){
-        const proj = new Project(name);
-        ProjectController.addProjectToList(proj);
-    }
+
 
     // Takes in name, description, due date, priority, notes, checklist and optional project paramater
     createTodo(name,desc,dueDate,prio,notes,checklist,project="Default"){
@@ -54,10 +51,12 @@ class MainController{
     }
 }
 const mc = new MainController;
-mc.createProject("testing");
+// ProjectController.createProject("testing");
+// mc.createTodo("Aall", "test description lorem ipsum", "April 11", "High priority","test note","test checklist","testing");
+// console.log(ProjectController.getListOfProjects());
 
-mc.createTodo("Test name", "test description lorem ipsum", "April 11", "High priority");
-mc.createTodo("Aall", "test description lorem ipsum", "April 11", "High priority","test note","test checklist","testing");
+// mc.createTodo("Test name", "test description lorem ipsum", "April 11", "High priority");
+
 
 // console.log(ProjectController.displayProjects());
 // const testy = ProjectController.getProject("Default");
