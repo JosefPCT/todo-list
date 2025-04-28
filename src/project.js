@@ -16,7 +16,7 @@ export class Project{
         return this.todoLists;
     }
 
-
+    // Searches for a specific todo and returns if found
     getTodo(title){
         const result = this.todoLists.find((item) => item.title === title);
         if(!result){
@@ -28,6 +28,7 @@ export class Project{
         }
     }   
 
+    // Checks if todo exists, deletes it if it does.
     deleteTodo(title){
         console.log("deleting todo initializitng");
         const result = this.todoLists.find((todo) => todo.title === title ); 

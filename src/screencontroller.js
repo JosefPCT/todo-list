@@ -20,7 +20,7 @@ export class ScreenController{
         ScreenController.addTodoButton.addEventListener("click", ScreenController.newTodo);
     }
 
-    // Event handler
+    // Event handler for Adding a Project Button
     static newProject(e){
         console.log("Clicked addProject Button");
         const newProjectName = prompt("Name of new Project");
@@ -28,13 +28,15 @@ export class ScreenController{
         ScreenController.showAllProjects();
     }
 
+    // Event handler for Adding a New Todo Button
     static newTodo(e){
         console.log("Clicked New Todo Button");
-        const newTodo = prompt("Name of new TOdo");
+        const newTodo = prompt("Name of new Todo");
         LogicController.createTodo(newTodo);
         ScreenController.showAllProjects();
     }
 
+    // Clears the container first, then displays the project name and their todo's title and due date
     static showAllProjects(){
         ScreenController.container.innerHTML = "";
         const projects = LogicController.getListOfProjects();
