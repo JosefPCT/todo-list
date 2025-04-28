@@ -7,50 +7,19 @@ import { ScreenController } from './screencontroller.js'
 
 
 
-class MainController{
-    constructor(){
-        ProjectController.addProjectToList(new Project("Default"));
-        ProjectController.addProjectToList(new Project("Test"));
-        ScreenController.cacheDom();
-        ScreenController.initEventListeners();
-
-        // Testing...
-        console.log("testing,...");
-
-        console.log(ScreenController.container);
-
-        ScreenController.showProjects(ProjectController.getListOfProjects());
-    }
-
-
-
-    // Takes in name, description, due date, priority, notes, checklist and optional project paramater
-    createTodo(name,desc,dueDate,prio,notes,checklist,project="Default"){
-        // Looks for the project it will go into
-        const proj = ProjectController.getProject(project);
-        const newTodo = new Todo(name,desc,dueDate,prio,notes,checklist);
-        proj.addTodo(newTodo);
-    }
-
-    // Console logs the todo list of a specific project
-    displayTodosOf(projName){
-        console.log(`Displaying todos of ${projName}`);
-        const proj = ProjectController.getProject(projName);
-        proj.showTodos();
-    }
-
-    //
-    findTodoOf(projName,title){
-        const proj = ProjectController.getProject(projName);
-        return proj.getTodo(title);
-    }
-
-    deleteTodoOf(projName, title){
-        const proj = ProjectController.getProject(projName);
-        proj.deleteTodo(title);
-    }
-}
-const mc = new MainController;
+// class MainController{
+//     constructor(){
+//         ProjectController.addProjectToList(new Project("Default"));
+//         ProjectController.addProjectToList(new Project("Test"));
+//         ScreenController.cacheDom();
+//         ScreenController.initEventListeners();
+//         // Testing...
+//         console.log("testing,...");
+//         console.log(ScreenController.container);
+//         ScreenController.showProjects(ProjectController.getListOfProjects());
+//     }
+// }
+// const mc = new MainController;
 // ProjectController.createProject("testing");
 // mc.createTodo("Aall", "test description lorem ipsum", "April 11", "High priority","test note","test checklist","testing");
 // console.log(ProjectController.getListOfProjects());
