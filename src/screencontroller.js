@@ -1,3 +1,5 @@
+import { LogicController } from './logic-controller.js'
+
 export class ScreenController{
     static container;
     static addTodoButton;
@@ -21,12 +23,13 @@ export class ScreenController{
     static newProject(e){
         console.log("Clicked addProject Button");
         const newProjectName = prompt("Name of new Project");
-        // Need to call createProject() from MainController, without importing?
-        // MainController.createProject(newProjectName);
-        
+        LogicController.createProject(newProjectName);
+        ScreenController.showAllProjects();
     }
 
-    static showProjects(projects){
+    static showAllProjects(){
+        ScreenController.container.innerHTML = "";
+        const projects = LogicController.getListOfProjects();
         projects.forEach(project => {
             const h2 = document.createElement("h2");
             h2.textContent = project.name;
@@ -34,3 +37,7 @@ export class ScreenController{
         });
     }
 }
+
+ScreenController.cacheDom();
+ScreenController.initEventListeners();
+LogicController.displayProjects();
