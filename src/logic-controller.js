@@ -11,6 +11,7 @@ export class LogicController{
         const proj = LogicController.getProject(project);
         const newTodo = new Todo(name,desc,dueDate,prio,notes,checklist);
         proj.addTodo(newTodo);
+        return newTodo;
     }
  
     // Returns a specific todo
@@ -38,6 +39,7 @@ export class LogicController{
     static createProject(name){
         const proj = new Project(name);
         LogicController.addProjectToList(proj);
+        return proj;
     }
 
     static renameProject(projName,newName){

@@ -1,4 +1,6 @@
 import { LogicController } from './logic-controller.js'
+import { Todo } from './todo.js';
+import { Project } from './project.js'
 
 export class ScreenController{
     static container;
@@ -172,5 +174,49 @@ window.onload = function(){
     LogicController.displayProjects();
 
     ScreenController.showAllProjects();
+
+    //Testing of local storage
+    // const test0 = localStorage.setItem("todo", JSON.stringify(new Todo("name")));
+    // console.log(test0);
+    // console.log()
+    // const test = localStorage.getItem("test key");
+    // console.log(test);
+    // const test2 = localStorage.removeItem("test key");
+    // console.log(test2);
+
+    // //More Testing, creating a localStorage item to set
+    // const testProject = LogicController.createProject("test proj");
+    // const testTodo = LogicController.createTodo("Test title","test desc","12-25","high","test notes","test checklist");
+    // console.log(testProject);
+    // console.log(testTodo);
+    // testProject.addTodo(testTodo);
+    // localStorage.setItem("1",JSON.stringify(testProject));
+
+    // Code to restore objects form JSON file, check for null
+    const test = localStorage.getItem("1");
+    const testParsed = JSON.parse(test);
+    console.log(testParsed);
+    console.log(testParsed.todoLists);
+
+    const todoInstance = new Todo();
+    const projectInstance = new Project();
+    Object.assign(todoInstance, testParsed.todoLists[0]);
+    console.log(testParsed);
+    console.log(todoInstance);
+    testParsed.todoLists[0] = todoInstance;
+    console.log(testParsed);
+
+    console.log(projectInstance);
+    Object.assign(projectInstance,testParsed);
+    console.log(projectInstance);
+    LogicController.addProjectToList(projectInstance);
+    ScreenController.showAllProjects();
+
+    // A project object that contains all the project in the localStorage
+    console.log("list of projects");
+    console.log(LogicController.getListOfProjects());       
+    localStorage.setItem("projects", JSON.stringify(LogicController.getListOfProjects()));
+    const x = JSON.parse(localStorage.getItem("projects"));
+    console.log(x);
 }
 
