@@ -193,8 +193,28 @@ window.onload = function(){
     // localStorage.setItem("1",JSON.stringify(testProject));
 
     // Parse the localStorage's project JSON file 
+    console.log("Parsing projects JSON...");
     const projects = JSON.parse(localStorage.getItem("projects"));
 
+    const projectsWithMethods = [];
+    projects.forEach( (proj,projInd) =>{
+        console.log(proj.name);
+        const newProjInstance = new Project();
+        Object.assign(newProjInstance, proj);
+        projectsWithMethods.push(newProjInstance);
+        proj.todoLists.forEach((todo,todoInd) => {
+            const newTodoInstance = new Todo();
+            console.log(todo.title);
+            Object.assign(newTodoInstance, todo);
+            projectsWithMethods[projInd].todoLists[todoInd] = newTodoInstance;
+        });
+    });
+    console.log(projectsWithMethods);
+    LogicController.replaceListOfProjects(projectsWithMethods);
+    ScreenController.showAllProjects();
+
+    // const projectsWithMethods = projects.map((proj) => Object.assign(newProjInstance, proj));
+    // console.log(projectsWithMethods);
 
 
     // // Code to restore objects form JSON file, check for null

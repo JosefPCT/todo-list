@@ -26,6 +26,11 @@ export class LogicController{
     }     
 
     //Project-Related Methods
+    // Replace list of projects, takes an array as an argument;
+    static replaceListOfProjects(projects){
+        LogicController.#projects = projects;
+    }
+
     // returns the current list of projects
     static getListOfProjects(){
         return LogicController.#projects;
