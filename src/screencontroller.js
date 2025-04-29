@@ -40,7 +40,7 @@ export class ScreenController{
     static openModal(e){
         console.log("Who clicked?");
         console.log(e.target.previousSibling.id);
-        ScreenController.whoClicked = e.target.previousSibling.id;
+        ScreenController.whoClicked = e.target.parentNode.id;
         console.log("Clicked New Todo Button");
         console.log(ScreenController.modal);
         ScreenController.modal.showModal();
@@ -212,11 +212,16 @@ window.onload = function(){
     LogicController.addProjectToList(projectInstance);
     ScreenController.showAllProjects();
 
-    // A project object that contains all the project in the localStorage
-    console.log("list of projects");
-    console.log(LogicController.getListOfProjects());       
-    localStorage.setItem("projects", JSON.stringify(LogicController.getListOfProjects()));
-    const x = JSON.parse(localStorage.getItem("projects"));
-    console.log(x);
+    // // A project object that contains all the project in the localStorage
+    // console.log("list of projects");
+    // console.log(LogicController.getListOfProjects());       
+    // localStorage.setItem("projects", JSON.stringify(LogicController.getListOfProjects()));
+    // const x = JSON.parse(localStorage.getItem("projects"));
+    // console.log(x);
 }
 
+window.onunload = function(){
+    console.log("unloading...");
+    const projects = LogicController.getListOfProjects();
+    localStorage.setItem("projects", JSON.stringify(projects));
+}
