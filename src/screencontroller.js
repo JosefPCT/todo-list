@@ -95,7 +95,7 @@ export class ScreenController{
                 const todoDiv = document.createElement("div");
 
                 todoDiv.classList.add("todo-container");
-                todoDiv.addEventListener("click", ScreenController.expandTodoHandler);
+                para.addEventListener("click", ScreenController.expandTodoHandler);
 
                 para.textContent = `${todo.title} due date on ${todo.dueDate}`;
                 para.setAttribute('data-title',todo.title);
