@@ -78,34 +78,71 @@ export class ScreenController{
             const h2 = document.createElement("h2");
             const button = document.createElement("button");
 
+            div.id = project.name; 
+
+            h2.textContent = project.name;
+            h2.addEventListener("click", ScreenController.renameProjectHandler);
+
             // uses the same modal for both add todo button
             button.addEventListener("click", ScreenController.openModal);
             button.textContent = "+";
-
-            h2.id = project.name; 
-            h2.textContent = project.name;
-            h2.addEventListener("click", ScreenController.renameProjectHandler);
 
             div.appendChild(h2);
             div.appendChild(button);
             console.log(project);
             project.getTodoList().forEach(todo =>{
                 const para = document.createElement("p");
+                const todoDiv = document.createElement("div");
+
+                todoDiv.classList.add("todo-container");
+                todoDiv.addEventListener("click", ScreenController.expandTodoHandler);
+
                 para.textContent = `${todo.title} due date on ${todo.dueDate}`;
-                div.appendChild(para);
+                para.setAttribute('data-title',todo.title);
+
+                todoDiv.appendChild(para);
+                div.appendChild(todoDiv);
             });
 
             ScreenController.container.appendChild(div);
         });
     }
 
+    // Event handler for expanding todos
+    static expandTodoHandler(e){
+        console.log("Initializing expanding of todo");
+        console.log("Getting the project name...");
+        const projName = e.target.parentNode.parentNode.id;
+        console.log(projName);
+
+        const todoTitle = e.target.dataset.title;
+        console.log(`Data title value is: ${todoTitle}`);
+
+        const todo = LogicController.getTodoOf(projName,todoTitle);
+        console.log("Showing the specific todo:");
+        console.log(todo);
+
+        const expandedTodoDiv = document.createElement("div");
+        expandedTodoDiv.classList.add("expanded-todo");
+
+        for ( const prop in todo){
+            console.log(`${prop}: ${todo[prop]}`);
+            const para = document.createElement("p");
+            para.textContent = `${prop}: ${todo[prop]}`;
+            expandedTodoDiv.appendChild(para);
+        }
+
+        // console.log(e.target.parentNode);
+        e.target.parentNode.appendChild(expandedTodoDiv);
+    }
+
     // Event handler for renaming the project
     static renameProjectHandler(e){
         console.log("Initializing renaming of project...");
-        console.log(e.target.id);
-        const projName = e.target.id;
+        console.log(e.target.parentNode.id);
+        const projName = e.target.parentNode.id;
 
-        const newProjectName = prompt("Rename the project", e.target.id);
+        const newProjectName = prompt("Rename the project", e.target.parentNode.id);
 
         LogicController.renameProject(projName, newProjectName);
         ScreenController.showAllProjects();

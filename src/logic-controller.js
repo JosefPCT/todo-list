@@ -14,7 +14,7 @@ export class LogicController{
     }
  
     // Returns a specific todo
-    static findTodoOf(projName,title){
+    static getTodoOf(projName,title){
          const proj = LogicController.getProject(projName);
          return proj.getTodo(title);
      }
