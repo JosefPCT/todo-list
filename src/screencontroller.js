@@ -39,7 +39,7 @@ export class ScreenController{
     // Event handler for opening the modal, saves the id of the project where the button was clicked to
     static openModal(e){
         console.log("Who clicked?");
-        console.log(e.target.previousSibling.id);
+        console.log(e.target.parentNode.id);
         ScreenController.whoClicked = e.target.parentNode.id;
         console.log("Clicked New Todo Button");
         console.log(ScreenController.modal);
@@ -50,7 +50,7 @@ export class ScreenController{
     // Event handler for Adding a New Todo, uses FormData to get the form from the modal
     static modalNewTodo(e){
         console.log("Who clicked?");
-        console.log(ScreenController.whoClicked);;
+        console.log( "" === ScreenController.whoClicked);;
         console.log("Submitted New Todo");
         const form = ScreenController.form;
         
@@ -65,7 +65,7 @@ export class ScreenController{
         const prio = formData.get("priority");
         const notes = formData.get("notes");
         const checkList = "";
-        const project = ScreenController.whoClicked === undefined ? "Default" : ScreenController.whoClicked;
+        const project = ScreenController.whoClicked === "" ? "Default" : ScreenController.whoClicked;
         LogicController.createTodo(title,desc,due,prio,notes,checkList,project);
         ScreenController.showAllProjects();
 
@@ -192,25 +192,30 @@ window.onload = function(){
     // testProject.addTodo(testTodo);
     // localStorage.setItem("1",JSON.stringify(testProject));
 
-    // Code to restore objects form JSON file, check for null
-    const test = localStorage.getItem("1");
-    const testParsed = JSON.parse(test);
-    console.log(testParsed);
-    console.log(testParsed.todoLists);
+    // Parse the localStorage's project JSON file 
+    const projects = JSON.parse(localStorage.getItem("projects"));
 
-    const todoInstance = new Todo();
-    const projectInstance = new Project();
-    Object.assign(todoInstance, testParsed.todoLists[0]);
-    console.log(testParsed);
-    console.log(todoInstance);
-    testParsed.todoLists[0] = todoInstance;
-    console.log(testParsed);
 
-    console.log(projectInstance);
-    Object.assign(projectInstance,testParsed);
-    console.log(projectInstance);
-    LogicController.addProjectToList(projectInstance);
-    ScreenController.showAllProjects();
+
+    // // Code to restore objects form JSON file, check for null
+    // const test = localStorage.getItem("1");
+    // const testParsed = JSON.parse(test);
+    // console.log(testParsed);
+    // console.log(testParsed.todoLists);
+
+    // const todoInstance = new Todo();
+    // const projectInstance = new Project();
+    // Object.assign(todoInstance, testParsed.todoLists[0]);
+    // console.log(testParsed);
+    // console.log(todoInstance);
+    // testParsed.todoLists[0] = todoInstance;
+    // console.log(testParsed);
+
+    // console.log(projectInstance);
+    // Object.assign(projectInstance,testParsed);
+    // console.log(projectInstance);
+    // LogicController.addProjectToList(projectInstance);
+    // ScreenController.showAllProjects();
 
     // // A project object that contains all the project in the localStorage
     // console.log("list of projects");
@@ -220,6 +225,7 @@ window.onload = function(){
     // console.log(x);
 }
 
+// Stores all the current projects on the localStorage when unload event fires
 window.onunload = function(){
     console.log("unloading...");
     const projects = LogicController.getListOfProjects();
