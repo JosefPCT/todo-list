@@ -13,6 +13,7 @@ export class LogicController{
         proj.addTodo(newTodo);
     }
  
+    // Returns a specific todo
     static findTodoOf(projName,title){
          const proj = LogicController.getProject(projName);
          return proj.getTodo(title);
@@ -24,22 +25,28 @@ export class LogicController{
     }     
 
     //Project-Related Methods
+    // returns the current list of projects
+    static getListOfProjects(){
+        return LogicController.#projects;
+    }
+
+     // Returns a specific project if found, undefined if not found
+     static getProject(projectName){
+        return LogicController.#projects.find((item) => item.name === projectName);
+    }   
+
     static createProject(name){
         const proj = new Project(name);
         LogicController.addProjectToList(proj);
     }
 
+    static renameProject(projName,newName){
+        const proj = LogicController.getProject(projName);
+        return proj.name = newName;
+    }
+
     static addProjectToList(project){
         LogicController.#projects.push(project);
-    }
-
-    // Returns an element if found, returns undefined if not found
-    static getProject(projectName){
-        return LogicController.#projects.find((item) => item.name === projectName);
-    }
-
-    static getListOfProjects(){
-        return LogicController.#projects;
     }
 
     // Console Related Methods

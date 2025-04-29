@@ -84,7 +84,7 @@ export class ScreenController{
 
             h2.id = project.name; 
             h2.textContent = project.name;
-            h2.addEventListener("click", ScreenController.renameProject);
+            h2.addEventListener("click", ScreenController.renameProjectHandler);
 
             div.appendChild(h2);
             div.appendChild(button);
@@ -100,17 +100,16 @@ export class ScreenController{
     }
 
     // Event handler for renaming the project
-    static renameProject(e){
+    static renameProjectHandler(e){
         console.log("Initializing renaming of project...");
         console.log(e.target.id);
-
-        const proj = LogicController.getProject(e.target.id);
-        console.log(proj);
+        const projName = e.target.id;
 
         const newProjectName = prompt("Rename the project", e.target.id);
-        proj.name = newProjectName;
+
+        LogicController.renameProject(projName, newProjectName);
         ScreenController.showAllProjects();
-        console.log(`Renamed project to ${proj.name}`);
+        console.log(`Renamed project to ${newProjectName}`);
     }
 }
 
