@@ -95,19 +95,38 @@ export class ScreenController{
             project.getTodoList().forEach(todo =>{
                 const para = document.createElement("p");
                 const todoDiv = document.createElement("div");
+                const removeTodoButton = document.createElement("button");
 
                 todoDiv.classList.add("todo-container");
+                
                 para.addEventListener("click", ScreenController.expandTodoHandler);
+                removeTodoButton.addEventListener("click", ScreenController.removeTodoHandler);
 
                 para.textContent = `${todo.title} due date on ${todo.dueDate}`;
                 para.setAttribute('data-title',todo.title);
+                removeTodoButton.textContent = `Complete`;
 
                 todoDiv.appendChild(para);
+                todoDiv.appendChild(removeTodoButton);
                 div.appendChild(todoDiv);
             });
 
             ScreenController.container.appendChild(div);
         });
+    }
+
+    // Event handler for removing todos
+    static removeTodoHandler(e){
+        console.log("Removing todo...");
+        console.log(e.target.parentNode);
+        const todoTitle = e.target.previousSibling.dataset.title;
+        const projName = e.target.parentNode.parentNode.id;
+        console.log(todoTitle);
+        console.log(projName);
+        LogicController.deleteTodoOf(projName,todoTitle);
+        ScreenController.showAllProjects();
+        const nodeToRemove = e.target.parentNode;
+        const parentOfNode = e.target.parentNode.parentOfNode;
     }
 
     // Event handler for expanding todos

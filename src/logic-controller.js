@@ -21,7 +21,7 @@ export class LogicController{
      }
 
     static deleteTodoOf(projName, title){
-        const proj = ProjectController.getProject(projName);
+        const proj = LogicController.getProject(projName);
         proj.deleteTodo(title);
     }     
 
