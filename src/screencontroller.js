@@ -78,11 +78,13 @@ export class ScreenController{
             const h2 = document.createElement("h2");
             const button = document.createElement("button");
 
+            // uses the same modal for both add todo button
             button.addEventListener("click", ScreenController.openModal);
             button.textContent = "+";
 
             h2.id = project.name; 
             h2.textContent = project.name;
+            h2.addEventListener("click", ScreenController.renameProject);
 
             div.appendChild(h2);
             div.appendChild(button);
@@ -95,6 +97,20 @@ export class ScreenController{
 
             ScreenController.container.appendChild(div);
         });
+    }
+
+    // Event handler for renaming the project
+    static renameProject(e){
+        console.log("Initializing renaming of project...");
+        console.log(e.target.id);
+
+        const proj = LogicController.getProject(e.target.id);
+        console.log(proj);
+
+        const newProjectName = prompt("Rename the project", e.target.id);
+        proj.name = newProjectName;
+        ScreenController.showAllProjects();
+        console.log(`Renamed project to ${proj.name}`);
     }
 }
 
