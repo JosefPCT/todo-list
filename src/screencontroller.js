@@ -115,25 +115,39 @@ export class ScreenController{
         const projName = e.target.parentNode.parentNode.id;
         console.log(projName);
 
-        const todoTitle = e.target.dataset.title;
-        console.log(`Data title value is: ${todoTitle}`);
+        console.log("Showing nextSibling");
+        console.log(e.target.nextSibling);
 
-        const todo = LogicController.getTodoOf(projName,todoTitle);
-        console.log("Showing the specific todo:");
-        console.log(todo);
-
-        const expandedTodoDiv = document.createElement("div");
-        expandedTodoDiv.classList.add("expanded-todo");
-
-        for ( const prop in todo){
-            console.log(`${prop}: ${todo[prop]}`);
-            const para = document.createElement("p");
-            para.textContent = `${prop}: ${todo[prop]}`;
-            expandedTodoDiv.appendChild(para);
+        // Block of code that checks if a sibling exists, if not, expand, if it does remove the next sibling
+        if(e.target.nextSibling){
+            console.log("already expanded...");
+            console.log(e.target.nextSibling);
+            const childToRemove = e.target.nextSibling;
+            const parent = e.target.parentNode;
+            parent.removeChild(childToRemove);
+            return;
+        } else {
+            const todoTitle = e.target.dataset.title;
+            console.log(`Data title value is: ${todoTitle}`);
+    
+            const todo = LogicController.getTodoOf(projName,todoTitle);
+            console.log("Showing the specific todo:");
+            console.log(todo);
+    
+            const expandedTodoDiv = document.createElement("div");
+            expandedTodoDiv.classList.add("expanded-todo");
+    
+            for ( const prop in todo){
+                console.log(`${prop}: ${todo[prop]}`);
+                const para = document.createElement("p");
+                para.textContent = `${prop}: ${todo[prop]}`;
+                expandedTodoDiv.appendChild(para);
+            }
+    
+            // console.log(e.target.parentNode);
+            e.target.parentNode.appendChild(expandedTodoDiv);
         }
 
-        // console.log(e.target.parentNode);
-        e.target.parentNode.appendChild(expandedTodoDiv);
     }
 
     // Event handler for renaming the project
