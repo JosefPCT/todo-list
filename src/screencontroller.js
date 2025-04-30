@@ -273,11 +273,15 @@ window.onload = function(){
     // const x = JSON.parse(localStorage.getItem("projects"));
     // console.log(x);
 
-    const testDate = new Date(1996,8,11);
-    console.log(testDate);
-    console.log(testDate.getHours());
-    // console.log(format(testDate, "yyyy-MM-dd"));
+    // const testDate = new Date(1996,8,11);
+    // console.log(testDate);
+    // console.log(testDate.getHours());
+    // // console.log(format(testDate, "yyyy-MM-dd"));
     // console.log(secondsToHours(testDate.getTime()));
+
+    // console.log(LogicController.getListOfProjects());
+    // LogicController.removeProjectFromList(null);
+    // ScreenController.showAllProjects();
     
 }
 
