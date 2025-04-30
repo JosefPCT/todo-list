@@ -1,6 +1,8 @@
 import { LogicController } from './logic-controller.js'
 import { Todo } from './todo.js';
 import { Project } from './project.js'
+import { format } from "date-fns";
+import { secondsToHours } from 'date-fns';
 
 export class ScreenController{
     static container;
@@ -79,6 +81,7 @@ export class ScreenController{
             const div = document.createElement("div");
             const h2 = document.createElement("h2");
             const button = document.createElement("button");
+            
 
             div.id = project.name; 
 
@@ -211,25 +214,7 @@ window.onload = function(){
     // testProject.addTodo(testTodo);
     // localStorage.setItem("1",JSON.stringify(testProject));
 
-    // Parse the localStorage's project JSON file 
-    console.log("Parsing projects JSON...");
-    const projects = JSON.parse(localStorage.getItem("projects"));
-
-    const projectsWithMethods = [];
-    projects.forEach( (proj,projInd) =>{
-        console.log(proj.name);
-        const newProjInstance = new Project();
-        Object.assign(newProjInstance, proj);
-        projectsWithMethods.push(newProjInstance);
-        proj.todoLists.forEach((todo,todoInd) => {
-            const newTodoInstance = new Todo();
-            console.log(todo.title);
-            Object.assign(newTodoInstance, todo);
-            projectsWithMethods[projInd].todoLists[todoInd] = newTodoInstance;
-        });
-    });
-    console.log(projectsWithMethods);
-    LogicController.replaceListOfProjects(projectsWithMethods);
+    LogicController.parseProjectsFromJSON();
     ScreenController.showAllProjects();
 
     // const projectsWithMethods = projects.map((proj) => Object.assign(newProjInstance, proj));
@@ -262,11 +247,16 @@ window.onload = function(){
     // localStorage.setItem("projects", JSON.stringify(LogicController.getListOfProjects()));
     // const x = JSON.parse(localStorage.getItem("projects"));
     // console.log(x);
+
+    const testDate = new Date(1996,8,11);
+    console.log(testDate);
+    console.log(testDate.getHours());
+    // console.log(format(testDate, "yyyy-MM-dd"));
+    // console.log(secondsToHours(testDate.getTime()));
+    
 }
 
-// Stores all the current projects on the localStorage when unload event fires
+
 window.onunload = function(){
-    console.log("unloading...");
-    const projects = LogicController.getListOfProjects();
-    localStorage.setItem("projects", JSON.stringify(projects));
+    LogicController.storeProjectsToJSON();
 }

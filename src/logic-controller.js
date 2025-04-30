@@ -69,5 +69,35 @@ export class LogicController{
         proj.showTodos();
     }  
     
+    // JSON Local Storage Serialization and Parsing
+
+    // Stores all the current projects on the localStorage when unload event fires
+    static storeProjectsToJSON(){
+        console.log("unloading...");
+        const projects = LogicController.getListOfProjects();
+        localStorage.setItem("projects", JSON.stringify(projects));
+    }
+
+    // Parse the localStorage's project JSON file 
+    static parseProjectsFromJSON(){
+        console.log("Parsing projects JSON...");
+        const projects = JSON.parse(localStorage.getItem("projects"));
     
+        const projectsWithMethods = [];
+        projects.forEach( (proj,projInd) =>{
+            console.log(proj.name);
+            const newProjInstance = new Project();
+            Object.assign(newProjInstance, proj);
+            projectsWithMethods.push(newProjInstance);
+            proj.todoLists.forEach((todo,todoInd) => {
+                const newTodoInstance = new Todo();
+                console.log(todo.title);
+                Object.assign(newTodoInstance, todo);
+                projectsWithMethods[projInd].todoLists[todoInd] = newTodoInstance;
+            });
+        });
+        console.log(projectsWithMethods);
+        LogicController.replaceListOfProjects(projectsWithMethods);       
+    }
+
 }
