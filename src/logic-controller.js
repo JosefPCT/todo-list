@@ -32,6 +32,7 @@ export class LogicController{
     }
 
     // Replace list of projects, takes an array as an argument;
+    // To use with localStorage JSON parsing
     static replaceListOfProjects(projects){
         LogicController.#projects = projects;
     }
@@ -60,19 +61,6 @@ export class LogicController{
     static addProjectToList(project){
         LogicController.#projects.push(project);
     }
-
-    // Console Related Methods
-    static displayProjects(){
-        console.log("Displaying projects...");
-        console.log(LogicController.#projects);
-    }
-
-     // Console logs the todo list of a specific project
-     static displayTodosOf(projName){
-        console.log(`Displaying todos of ${projName}`);
-        const proj = LogicController.getProject(projName);
-        proj.showTodos();
-    }  
     
     // JSON Local Storage Serialization and Parsing
 
@@ -104,5 +92,18 @@ export class LogicController{
         console.log(projectsWithMethods);
         LogicController.replaceListOfProjects(projectsWithMethods);       
     }
+
+    // Console Related Methods
+    static displayProjects(){
+        console.log("Displaying projects...");
+        console.log(LogicController.#projects);
+    }
+
+     // Console logs the todo list of a specific project
+     static displayTodosOf(projName){
+        console.log(`Displaying todos of ${projName}`);
+        const proj = LogicController.getProject(projName);
+        proj.showTodos();
+    }      
 
 }
