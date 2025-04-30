@@ -81,6 +81,7 @@ export class ScreenController{
             const div = document.createElement("div");
             const h2 = document.createElement("h2");
             const button = document.createElement("button");
+            const removeProjButton = document.createElement("button");
             
 
             div.id = project.name; 
@@ -92,8 +93,16 @@ export class ScreenController{
             button.addEventListener("click", ScreenController.openModal);
             button.textContent = "+";
 
+
             div.appendChild(h2);
             div.appendChild(button);
+            if(project.name !== "Default"){
+                removeProjButton.addEventListener("click", ScreenController.removeProjectHandler);
+                removeProjButton.textContent = "Remove Project";
+                div.appendChild(removeProjButton);
+            }
+
+            
             console.log(project);
             project.getTodoList().forEach(todo =>{
                 const para = document.createElement("p");
@@ -116,6 +125,14 @@ export class ScreenController{
 
             ScreenController.container.appendChild(div);
         });
+    }
+
+    // Event handler for removing proejcts
+    static removeProjectHandler(e){
+        console.log("Initializing remove project handler");
+        console.log(e.target.parentNode);
+        LogicController.removeProjectFromList(e.target.parentNode.id);
+        ScreenController.showAllProjects();
     }
 
     // Event handler for removing todos

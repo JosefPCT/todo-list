@@ -26,6 +26,11 @@ export class LogicController{
     }     
 
     //Project-Related Methods
+    // Remove project from the #projects array
+    static removeProjectFromList(projName){
+        LogicController.#projects = LogicController.#projects.filter((proj) => proj.name !== projName);
+    }
+
     // Replace list of projects, takes an array as an argument;
     static replaceListOfProjects(projects){
         LogicController.#projects = projects;
